@@ -1,0 +1,1 @@
+A script that prints the absulote path name of the current working directory
