@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -l -r --sort=time | tail
+ls -Art | tail
