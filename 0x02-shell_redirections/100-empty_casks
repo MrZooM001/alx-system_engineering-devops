@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -1a */* | find -empty | tr -d './'
+find . -type f -empty -exec sh -c 'printf "%s\n" "${0##*/}"' {} \; -o -type d -empty -exec sh -c 'printf "%s\n" "${0##*/}"' {} \;
