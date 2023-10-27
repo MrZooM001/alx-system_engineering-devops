@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Print a message 10 times one per line.
+list=$(ls)
+for line in $list
+do
+    echo "$line" | cut -d '-' -f2
+done
