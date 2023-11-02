@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Bash script that configures an Ubuntu server to resolve URLs to IPv4 addresses
+sed -i 's/127.0.0.1/127.0.0.2/' /etc/hosts
+sed -i -e '$a8.8.8.8\tfacebook.com\n' /etc/hosts
