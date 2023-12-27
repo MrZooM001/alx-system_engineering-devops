@@ -1,8 +1,10 @@
-# create a file in /tmp, Using Puppet
+# create a file in '/tmp', Using Puppet
+#!/usr/bin/pup
 
 file { '/tmp/school':
- 'mod'    => '0744',
- 'owner'   => 'www-data',
- 'group'   => 'www-data'
- 'content' => 'I love Puppet'
+  ensure  => 'present',
+  content => 'I love Puppet',
+  owner   => 'www-data',
+  group   => 'www-data',
+  mode    => '0744'
 }
