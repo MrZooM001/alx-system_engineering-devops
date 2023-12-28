@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ssh -o "IdentitiesOnly=yes" -i ~/.ssh/school ubuntu@100.25.111.4
