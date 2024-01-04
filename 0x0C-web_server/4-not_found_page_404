@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# a script that configures a new Ubuntu machine using an answer file
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install nginx -y
+sudo service nginx start
+sudo chown -R "$USER":"$USER" /var/www/html/
+touch /var/www/html/404.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sed -i "s/#error_page 404/error_page 404/" /etc/nginx/sites-enabled/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+sudo service nginx restart
