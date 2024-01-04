@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# a script that configures a new Ubuntu machine using an answer file
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install nginx -y
+sudo service nginx start
+sudo chown -R "$USER":"$USER" /var/www/html/
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/default
+sudo sed -i '53i\rewrite ^/redirect_me http://hazemit.tech permanent;' /etc/nginx/sites-available/default
+sudo service nginx restart
