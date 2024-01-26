@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Double the number of webservers
+sudo apt update -y
+sudo apt-get install -y haproxy
+
+sudo bash -c 'cat <<EOF>> /etc/default/haproxy
+
+"ENABLED=1"
+EOF'
+
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.BACKUP
+sudo bash -c 'cat <<EOF>> /etc/haproxy/haproxy.cfg
+
+frontend hazemit_tech_front
+        bind *:80
+        mode http
+        default_backend hazemit_tech_back
+
+backend hazemit_tech_back
+        balance roundrobin
+        server 433374-web-01 100.25.111.4:80 check
+        server 433374-web-02 54.144.149.173:80 check
+EOF'
+
+if [ "$(pgrep -c haproxy)" -le 0 ]; then
+	sudo service haproxy start
+else
+	sudo service haproxy restart
+fi
