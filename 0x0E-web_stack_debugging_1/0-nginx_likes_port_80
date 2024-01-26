@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Nginx likes port 80
-sed -i "s/80/8080/g" /etc/nginx/sites-enabled/default
+sed -i "s/listen 8080/listen 80/" /etc/nginx/sites-enabled/default
 sudo service nginx restart
