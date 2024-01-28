@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # MySQL Full Backup & compressed to a tar.gz archive
-mysqldump -u root -p "$1" --all-databases > backup.sql
-tar -czvf "$(date +%d-%m-%Y).tar.gz" backup.sql
+mysqldump --all-databases -uroot -p"$1" -rbackup.sql
+tar -czvf "$(date +%d-%m-%Y).tar.gz" ./backup.sql
