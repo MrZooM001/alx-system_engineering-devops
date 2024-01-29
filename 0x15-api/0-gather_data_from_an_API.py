@@ -4,7 +4,7 @@ import requests
 from sys import argv
 
 
-def get_from_api():
+if __name__ == '__main__':
         """a function for a given employee ID,
         returns information about his/her TODO list progress."""
         usr_url = "https://jsonplaceholder.typicode.com/users"
@@ -29,6 +29,3 @@ def get_from_api():
 
         for task in done_tasks:
                 print("\t {}".format(task.get('title')))
-
-if __name__ == '__main__':
-        get_from_api()

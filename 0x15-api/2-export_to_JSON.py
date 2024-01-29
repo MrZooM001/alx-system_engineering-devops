@@ -5,7 +5,7 @@ from sys import argv
 import json
 
 
-def to_json():
+if __name__ == '__main__':
             """a function that exports data in the JSON format"""
 
             url = "https://jsonplaceholder.typicode.com/users"
@@ -29,8 +29,3 @@ def to_json():
                         })
             with open('{}.json'.format(emp_id), 'w') as filename:
                         json.dump(dictionary, filename)
-
-
-if __name__ == '__main__':
-            to_json()
-                        

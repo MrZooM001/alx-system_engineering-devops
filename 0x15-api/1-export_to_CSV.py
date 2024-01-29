@@ -4,7 +4,7 @@ import requests
 from sys import argv
 
 
-def to_csv():
+if __name__ == '__main__':
         """a function export data in the CSV format"""
 
         url = "https://jsonplaceholder.typicode.com/users"
@@ -23,7 +23,3 @@ def to_csv():
                         csv.write('"{}","{}","{}","{}"\n'
                                   .format(emp_id, username, task.get('completed'),
                                           task.get('title')))
-
-
-if __name__ == '__main__':
-        to_csv()

@@ -4,7 +4,7 @@ import requests
 import json
 
 
-def to_json():
+if __name__ == '__main__':
             """a function that exports JSON dictionary of list of dictionaries"""
             url = "https://jsonplaceholder.typicode.com/users"
             users = requests.get(url).json()
@@ -23,7 +23,3 @@ def to_json():
                                                 dict_list.append(tmp_dict)
                                     dictionary[user_id] = dict_list
                         json.dump(dictionary, file)
-
-
-if __name__ == '__main__':
-            to_json()
