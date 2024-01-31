@@ -8,8 +8,8 @@ if __name__ == "__main__":
     """a function for a given employee ID,
     returns information about his/her TODO list progress."""
     usr_url = "https://jsonplaceholder.typicode.com/users"
-    emp_id = argv[1]
-    full_url = "{}/{}".format(usr_url, emp_id)
+    user_id = int(argv[1])
+    full_url = "{}/{}".format(usr_url, user_id)
 
     response = requests.get(full_url)
     emp_name = response.json().get("name")

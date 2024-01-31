@@ -9,7 +9,7 @@ if __name__ == "__main__":
     """a function that exports data in the JSON format"""
 
     url = "https://jsonplaceholder.typicode.com/users"
-    user_id = argv[1]
+    user_id = int(argv[1])
     full_url = "{}/{}".format(url, user_id)
 
     response = requests.get(full_url)

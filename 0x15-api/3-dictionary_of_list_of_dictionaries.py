@@ -10,7 +10,7 @@ if __name__ == "__main__":
     users = requests.get(url).json()
     dictionary = {}
     for user in users:
-        user_id = user.get("id")
+        user_id = int(user.get("id"))
         username = user.get("username")
         tasks = requests.get("{}/{}/todos".format(url, user_id)).json()
         dict_list = []
