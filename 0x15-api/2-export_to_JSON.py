@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """a Python script that exports to JSON"""
+import json
 import requests
 from sys import argv
-import json
 
 
 if __name__ == "__main__":
@@ -16,19 +16,21 @@ if __name__ == "__main__":
     username = response.json().get("username")
 
     todo_url = full_url + "/todos"
+
     response = requests.get(todo_url)
     tasks = response.json()
 
     dictionary = {user_id: []}
 
     for task in tasks:
-        if (task.get("userId" == int(user_id))):
+        if task.get("userId" == int(user_id)):
             dictionary[user_id].append(
                 {
                     "task": task.get("title"),
                     "completed": task.get("completed"),
-                    "username": username
+                    "username": username,
                 }
             )
+
     with open("{}.json".format(user_id), "w+") as filename:
         json.dump(dictionary, filename)
