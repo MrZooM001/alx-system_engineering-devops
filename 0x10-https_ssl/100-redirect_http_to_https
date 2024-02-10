@@ -1,0 +1,30 @@
+global
+        log /dev/log    local0
+        log /dev/log    local1 notice
+        chroot /var/lib/haproxy
+        stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+        stats timeout 30s
+        user haproxy
+        group haproxy
+        daemon
+        ssl-dh-param-file /etc/haproxy/dhparams.pem
+
+defaults
+        log     global
+        mode    http
+        option  httplog
+        option  dontlognull
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+
+frontend hazemit_tech_front
+        bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/www.hazemit.tech.pem
+        redirect scheme https if !{ ssl_fc }
+        default_backend hazemit_tech_back
+
+backend hazemit_tech_back
+        balance roundrobin
+        server web-01 100.25.111.4:80 check
+        server web-02 54.144.149.173:80 check
