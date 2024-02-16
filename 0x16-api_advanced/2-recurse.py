@@ -30,6 +30,5 @@ def recurse(subreddit, hot_list=[], after=""):
     for child in res.get('children'):
         hot_list.append(child.get('data').get('title'))
     if after is not None:
-        print('*')
         return recurse(subreddit, hot_list, after)
     return hot_list
