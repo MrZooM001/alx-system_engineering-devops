@@ -4,7 +4,7 @@ import requests
 from sys import argv
 
 
-def number_of_subscribers(subreddit):
+def top_ten(subreddit):
     """a function that queries the Reddit API & returns the number
     of all subscribers of the <subreddit>
 
@@ -12,16 +12,17 @@ def number_of_subscribers(subreddit):
         subreddit (str): subreddit to queries for.
     """
     user_agent = {'User-Agent': 'hazem0010'}
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    response = requests.get(url, headers=user_agent)
+    url = "https://www.reddit.com/r/{}/hot".format(subreddit)
+    response = requests.get("{}.json?limit=10".format(url), headers=user_agent)
     if (response.status_code == 302 or response.status_code == 404):
         return 0
-    response = response.json()
-    if ('subscribers' in response):
-        return response.get('data').get('subscribers')
-    else:
-        return 0
+    res = response.json()
+    try:
+        for post in res.get('data').get('children'):
+            print(post.get('data').get('title'))
+    except Exception as ex:
+        return None
 
 
 if __name__ == "__main__":
-    number_of_subscribers(argv[1])
+    top_ten(argv[1])
