@@ -5,8 +5,8 @@ from sys import argv
 
 
 def top_ten(subreddit):
-    """a function that queries the Reddit API & returns the number
-    of all subscribers of the <subreddit>
+    """a function that queries the Reddit API
+    & returns the top 10 posts of the <subreddit>
 
     Parameters:
         subreddit (str): subreddit to queries for.
@@ -15,7 +15,7 @@ def top_ten(subreddit):
     url = "https://www.reddit.com/r/{}/hot".format(subreddit)
     response = requests.get("{}.json?limit=10".format(url), headers=user_agent)
     if (response.status_code == 302 or response.status_code == 404):
-        return 0
+        return None
     res = response.json()
     try:
         for post in res.get('data').get('children'):
