@@ -11,6 +11,8 @@ def top_ten(subreddit):
     Parameters:
         subreddit (str): subreddit to queries for.
     """
+    if subreddit is None:
+        return 0
     user_agent = {'User-Agent': 'hazem0010'}
     url = "https://www.reddit.com/r/{}/hot".format(subreddit)
     response = requests.get("{}.json?limit=10".format(url), headers=user_agent)
