@@ -22,7 +22,3 @@ def top_ten(subreddit):
             print(post.get('data').get('title'))
     except Exception as ex:
         return None
-
-
-if __name__ == "__main__":
-    top_ten(argv[1])

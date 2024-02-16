@@ -11,6 +11,8 @@ def number_of_subscribers(subreddit):
     Parameters:
         subreddit (str): subreddit to queries for.
     """
+    if subreddit is None:
+        return 0
     user_agent = {'User-Agent': 'hazem0010'}
     url = "https://www.reddit.com/r/{}/about".format(subreddit)
     response = requests.get("{}.json".format(url), headers=user_agent)
@@ -21,7 +23,3 @@ def number_of_subscribers(subreddit):
         return res.get('data').get('subscribers')
     except Exception as ex:
         return 0
-
-
-if __name__ == "__main__":
-    number_of_subscribers(argv[1])
