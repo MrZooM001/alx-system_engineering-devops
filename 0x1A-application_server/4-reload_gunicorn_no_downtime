@@ -1,0 +1,10 @@
+#!/bin/bash
+# Check if Gunicorn process is running
+if pgrep gunicorn >/dev/null 2>&1; then
+    echo "Reloading Gunicorn gracefully..."
+    # Send HUP signal to Gunicorn master process to gracefully reload workers
+    kill -HUP $(pgrep gunicorn)
+    echo "Gunicorn reloaded gracefully."
+else
+    echo "Gunicorn is not running."
+fi
